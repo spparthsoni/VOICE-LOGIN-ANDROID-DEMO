@@ -49,11 +49,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mobile Number :"
+            android:text="Secret Key :"
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/etSecretKey"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -19,11 +19,11 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText etUserName,etMobileNo;
+    private EditText etUserName,etSecretKEy;
     private final int CODE_SPEECH_INPUT_USERNAME = 100;
     private final int CODE_SPEECH_INPUT_MOBILE = 101;
     private FloatingActionButton faVoice;
-    String txtUsername,txtMobileNo;
+    String txtUsername,txtSecretKey;
     private Button btnLogin;
 
     @Override
@@ -32,22 +32,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         faVoice = (FloatingActionButton) findViewById(R.id.faVoice);
         etUserName=(EditText)findViewById(R.id.etUsername);
-        etMobileNo=(EditText)findViewById(R.id.etPassword);
+        etSecretKEy=(EditText)findViewById(R.id.etSecretKey);
         btnLogin=(Button)findViewById(R.id.btLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 txtUsername=etUserName.getText().toString();
-                txtMobileNo=etMobileNo.getText().toString();
-                if(txtUsername.length()!=0&&txtMobileNo.length()!=0) {
-                    if (txtUsername.equalsIgnoreCase("abc") && txtMobileNo.equalsIgnoreCase("123")) {
+                txtSecretKey=etSecretKEy.getText().toString();
+                if(txtUsername.length()!=0&&txtSecretKey.length()!=0) {
+                    if (txtUsername.equalsIgnoreCase("abc") && txtSecretKey.equalsIgnoreCase("123")) {
                         MainActivity.this.finish();
                         Intent i = new Intent(MainActivity.this, SecondActivity.class);
                         startActivity(i);
                     } else {
                         Toast.makeText(MainActivity.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
                         etUserName.setText("");
-                        etMobileNo.setText("");
+                        etSecretKEy.setText("");
                     }
                 }
                 else
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 txtUsername=etUserName.getText().toString();
-                txtMobileNo=etMobileNo.getText().toString();
+                txtSecretKey=etSecretKEy.getText().toString();
                 if(txtUsername.length()==0)
                 {
                     promptSpeechInputUserName();
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             faVoice.setVisibility(View.GONE);
         }
     }
-
     /**
      * Receiving speech input
      * */
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     etUserName.setText(result.get(0));
-                    if(txtMobileNo.length()==0)
+                    if(txtSecretKey.length()==0)
                     {
                         promptSpeechInputMobile();
                     }
@@ -134,10 +133,10 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    etMobileNo.setText(result.get(0));
+                    etSecretKEy.setText(result.get(0));
                     txtUsername=etUserName.getText().toString();
-                    txtMobileNo=etMobileNo.getText().toString();
-                    if(txtUsername.equalsIgnoreCase("abc")&&txtMobileNo.equalsIgnoreCase("123")) {
+                    txtSecretKey=etSecretKEy.getText().toString();
+                    if(txtUsername.equalsIgnoreCase("abc")&&txtSecretKey.equalsIgnoreCase("123")) {
                         MainActivity.this.finish();
                         Intent i = new Intent(MainActivity.this, SecondActivity.class);
                         startActivity(i);
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             Toast.makeText(MainActivity.this,"Wrong Credentials",Toast.LENGTH_SHORT).show();
                             etUserName.setText("");
-                            etMobileNo.setText("");
+                            etSecretKEy.setText("");
                         }
                     }
                 }
